@@ -7,33 +7,55 @@
 #include <string>
 #include <vector>
 #include <cstdlib>
+#include <fstream>
+using namespace std;
+
+string GetStartWord() {
+    ifstream file("words-left.txt");
+    vector<string> wordsLeft;
+    // String to store each line of the file.
+    string line;
+    int counter = 0;
+    if (file.is_open()) {
+        // Read each line from the file and store it in the
+        // 'line' variable.
+        while (getline(file, line)) {
+            /*counter++;*/
+            /*cout << line << endl;*/
+            wordsLeft.push_back(line);
+        }
+
+        // Close the file stream once all lines have been
+        // read.
+        file.close();
+    }
+    else {
+        // Print an error message to the standard error
+        // stream if the file cannot be opened.
+        cerr << "Unable to open file!" << endl;
+    }
+    srand(time(0));
+    int rNum = rand();
+    return wordsLeft[rNum];
+}
+
+void MainMenu() {
+	while (true) {
+	int menuChoice = 0;
+	printf("Welcome to Wordle Helper!\n 1) Get a starter word\n2) Get possible guesses\n3) Remove word from list of possibles\n4) Exit program\n");
+	std::cin >> menuChoice;
+
+	if (menuChoice == 4) {
+		break;
+	}
+    else if (menuChoice == 1) {
+        string word = GetStartWord();
+        printf("Random word is: %s", word);
+    }
+	}
+}
 
 int main()
 {
- /*   std::cout << "Hello World!\n";*/
-	char repeat = 'y';
-
-	while (true) {
-	srand(time(0));
-	int arr_size = rand() % 10 + 1;
-	printf("Array size is: %d\n", arr_size);
-	std::vector<int> arr(arr_size, 0);
-	
-	for (int i = 0; i < arr_size; i++) {
-		int rNum = rand() % 100 + 1;
-		arr[i] = rNum;
-	}
-
-	printf("Elements in array are:\n");
-	for (int i : arr) {
-		printf("%d\n", i);
-	}
-	printf("Repeat?(y/n): ");
-	std::cin >> repeat;
-
-	if (repeat != 'y') {
-		break;
-	}
-	}
-
+    MainMenu();
 }

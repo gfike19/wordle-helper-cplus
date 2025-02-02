@@ -18,5 +18,13 @@
     <ClCompile Include="wordle-helper-cplus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="basics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\..\..\coding\wordle-helper\words-left.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
